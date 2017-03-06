@@ -98,14 +98,14 @@ public class Hand {
 	
 	
 	
-
+	//TODO: Implement This Method
 	public static boolean isHandRoyalFlush(Hand h, HandScore hs)
 	{
 		
 		return false;
 	}
 	
-
+	//TODO: Implement This Method
 	public static boolean isHandStraightFlush(Hand h, HandScore hs)
 	{
 		return false;
