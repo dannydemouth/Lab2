@@ -101,6 +101,7 @@ public class Hand {
 	//TODO: Implement This Method
 	public static boolean isHandRoyalFlush(Hand h, HandScore hs)
 	{
+		
 		return false;
 	}
 	
@@ -112,7 +113,28 @@ public class Hand {
 	//TODO: Implement This Method
 	public static boolean isHandFourOfAKind(Hand h, HandScore hs)
 	{
-		return false;
+		boolean isFourOfAKind = false;
+		if ((h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == h.getCardsInHand()
+				.get(eCardNo.FourthCard.getCardNo()).geteRank()))
+		{
+			
+			isFourOfAKind = true;
+			hs.setHandStrength(eHandStrength.FourOfAKind);
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank());
+			return isFourOfAKind;
+			
+		}
+		else if ((h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).geteRank() == h.getCardsInHand()
+				.get(eCardNo.FifthCard.getCardNo()).geteRank()))
+		{
+			isFourOfAKind = true;
+			hs.setHandStrength(eHandStrength.FourOfAKind);
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).geteRank());
+			return isFourOfAKind;
+		}
+		else{
+			return isFourOfAKind = false;
+		}
 	}	
 	
 	//TODO: Implement This Method

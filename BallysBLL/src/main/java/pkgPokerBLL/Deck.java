@@ -1,6 +1,7 @@
 package pkgPokerBLL;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 import pkgPokerEnum.eRank;
@@ -18,6 +19,20 @@ public class Deck {
 		for (eRank Rank : eRank.values()) {
 			System.out.println(Rank.getiRankNbr());
 		}
+		Collections.shuffle(DeckCards);
+		Collections.sort(DeckCards);
+		Collections.sort(DeckCards,Card.CardRank);
+		
+	}
+	public Deck(int iNbrOfJokers)
+{
+	//
+	this();
+	
+}
+	public Deck(int iNbrOfJokers, ArrayList<Card> Wilds)
+	{
+		this(iNbrOfJokers); //this or super must be first statement in the constructor.
 	}
 	
 	public Card DrawCard()
