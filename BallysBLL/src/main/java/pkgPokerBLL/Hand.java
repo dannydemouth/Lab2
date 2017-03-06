@@ -98,19 +98,19 @@ public class Hand {
 	
 	
 	
-	//TODO: Implement This Method
+
 	public static boolean isHandRoyalFlush(Hand h, HandScore hs)
 	{
 		
 		return false;
 	}
 	
-	//TODO: Implement This Method
+
 	public static boolean isHandStraightFlush(Hand h, HandScore hs)
 	{
 		return false;
 	}	
-	//TODO: Implement This Method
+
 	public static boolean isHandFourOfAKind(Hand h, HandScore hs)
 	{
 		boolean isFourOfAKind = false;
@@ -149,7 +149,7 @@ public class Hand {
 		return false;
 	}	
 	
-	//TODO: Implement This Method
+
 	public static boolean isHandThreeOfAKind(Hand h, HandScore hs)
 	{
 		boolean isThreeOfAKind = false;
@@ -184,7 +184,7 @@ public class Hand {
 		}
 	}		
 	
-	//TODO: Implement This Method
+
 	public static boolean isHandTwoPair(Hand h, HandScore hs)
 	{
 		boolean is2Pair = false;
@@ -221,7 +221,7 @@ public class Hand {
 
 	}	
 	
-	//TODO: Implement This Method
+
 	public static boolean isHandPair(Hand h, HandScore hs)
 	{
 		boolean isPair = false;
@@ -264,7 +264,7 @@ public class Hand {
 		}
 	}	
 	
-	//TODO: Implement This Method
+
 	public static boolean isHandHighCard(Hand h, HandScore hs)
 	{
 		hs.setHandStrength(eHandStrength.HighCard);
