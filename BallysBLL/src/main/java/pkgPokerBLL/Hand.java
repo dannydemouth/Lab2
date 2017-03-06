@@ -140,7 +140,7 @@ public class Hand {
 	//TODO: Implement This Method
 	public static boolean isHandFlush(Hand h, HandScore hs)
 	{
-		return true;
+		return true; // ask for help
 	}		
 	
 	//TODO: Implement This Method
