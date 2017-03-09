@@ -15,7 +15,8 @@ public class Table {
 	
 	public Table AddPlayerToTable(Player p)
 	{
-		Player player1 = new Player("Geoffrey");
+		//TODO: Add a player to the table (should be pretty easy)		
 		return this;
+		
 	}
 }
