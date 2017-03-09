@@ -61,7 +61,7 @@ public class TestHands {
 	}
 
 	@Test
-	public void HighCard() {
+	public void TestHighCard() {
 
 		Hand h = new Hand();
 		h.AddCardToHand(new Card(eRank.TWO, eSuit.CLUBS));
@@ -70,16 +70,12 @@ public class TestHands {
 		h.AddCardToHand(new Card(eRank.TEN, eSuit.DIAMONDS));
 		h.AddCardToHand(new Card(eRank.KING, eSuit.SPADES));
 		h.EvaluateHand();
-
-		// Hand better be a full house
-		assertEquals(eHandStrength.HighCard.getHandStrength(), h.getHandScore().getHandStrength().getHandStrength());
-
-		// HI hand better be 'Four'
+		
+		assertEquals(eHandStrength.HighCard, h.getHandScore());
+		
 		assertEquals(eRank.KING.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
-
-		// Full House has no kickers.
+		
 		assertEquals(4, h.getHandScore().getKickers().size());
-
 	}
 
 	@Test
@@ -93,7 +89,7 @@ public class TestHands {
 		h.AddCardToHand(new Card(eRank.ACE, eSuit.SPADES));
 		h.EvaluateHand();
 		
-		assertEquals(eHandStrength.RoyalFlush.getHandStrength(), h.getHandScore().getHandStrength().getHandStrength());
+		assertEquals(h.getHandScore(), eHandStrength.RoyalFlush.getHandStrength());
 
 		
 		assertEquals(eRank.ACE.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
@@ -105,4 +101,95 @@ public class TestHands {
 		assertEquals(0, h.getHandScore().getKickers().size());
 
 	}
+
+	@Test
+	public void TestAcesAndEightsA(){
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eRank.ACE, eSuit.CLUBS));
+		h.AddCardToHand(new Card(eRank.ACE, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.QUEEN, eSuit.SPADES));
+		h.AddCardToHand(new Card(eRank.EIGHT, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.EIGHT, eSuit.SPADES));
+		h.EvaluateHand();
+		
+		assertEquals(eHandStrength.AcesAndEights.getHandStrength(), h.getHandScore());
+
+		assertEquals(eRank.ACE.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
+		
+		assertEquals(eRank.QUEEN.getiRankNbr(), h.getHandScore().getLoHand().getiRankNbr());
+
+		assertEquals(1, h.getHandScore().getKickers().size());
+	}
+
+	@Test
+	public void TestAcesAndEightsB(){
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eRank.ACE, eSuit.CLUBS));
+		h.AddCardToHand(new Card(eRank.ACE, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.EIGHT, eSuit.SPADES));
+		h.AddCardToHand(new Card(eRank.EIGHT, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.SIX, eSuit.SPADES));
+		h.EvaluateHand();
+
+		assertEquals(eHandStrength.AcesAndEights.getHandStrength(), h.getHandScore());
+
+		assertEquals(eRank.ACE.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
+
+		assertEquals(eRank.EIGHT.getiRankNbr(), h.getHandScore().getLoHand().getiRankNbr());
+
+		assertEquals(1, h.getHandScore().getKickers().size());
+	}
+
+	@Test
+	public void TestThreeOfAKindA(){
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eRank.KING, eSuit.CLUBS));
+		h.AddCardToHand(new Card(eRank.KING, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.KING, eSuit.SPADES));
+		h.AddCardToHand(new Card(eRank.EIGHT, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.SIX, eSuit.SPADES));
+		h.EvaluateHand();
+		
+		assertEquals(eHandStrength.ThreeOfAKind.getHandStrength(), h.getHandScore());
+
+		assertEquals(eRank.KING.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
+
+		assertEquals(2, h.getHandScore().getKickers().size());
+	}
+	
+	@Test
+	public void TestThreeOfAKindB(){
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eRank.KING, eSuit.CLUBS));
+		h.AddCardToHand(new Card(eRank.QUEEN, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.QUEEN, eSuit.SPADES));
+		h.AddCardToHand(new Card(eRank.QUEEN, eSuit.CLUBS));
+		h.AddCardToHand(new Card(eRank.SIX, eSuit.SPADES));
+		h.EvaluateHand();
+		
+		assertEquals(eHandStrength.ThreeOfAKind.getHandStrength(), h.getHandScore());
+
+		assertEquals(eRank.QUEEN.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
+
+		assertEquals(2, h.getHandScore().getKickers().size());
+	}
+	
+	@Test
+	public void TestThreeOfAKindC(){
+		Hand h = new Hand();
+		h.AddCardToHand(new Card(eRank.KING, eSuit.CLUBS));
+		h.AddCardToHand(new Card(eRank.QUEEN, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.JACK, eSuit.SPADES));
+		h.AddCardToHand(new Card(eRank.JACK, eSuit.DIAMONDS));
+		h.AddCardToHand(new Card(eRank.JACK, eSuit.CLUBS));
+		h.EvaluateHand();
+		
+		assertEquals(eHandStrength.ThreeOfAKind.getHandStrength(), h.getHandScore());
+
+		assertEquals(eRank.JACK.getiRankNbr(), h.getHandScore().getHiHand().getiRankNbr());
+
+		assertEquals(2, h.getHandScore().getKickers().size());
+	}
+	
+	
 }
