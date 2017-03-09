@@ -8,6 +8,7 @@ import java.util.UUID;
 import pkgPokerEnum.eCardNo;
 import pkgPokerEnum.eHandStrength;
 import pkgPokerEnum.eRank;
+import pkgPokerEnum.eSuit;
 
 
 
@@ -98,18 +99,35 @@ public class Hand {
 	
 	
 	
+	 public static boolean isAce(ArrayList<Card> cards) {
+	        if ((cards.get(eCardNo.FirstCard.getCardNo()).geteRank() == eRank.ACE) && 
+	                (cards.get(eCardNo.SecondCard.getCardNo()).geteRank() == eRank.KING)
+	                || (cards.get(eCardNo.SecondCard.getCardNo()).geteRank() == eRank.FIVE)) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
 	
-	//TODO: Implement This Method
 	public static boolean isHandRoyalFlush(Hand h, HandScore hs)
 	{
-		
-		return false;
+		boolean isHandRoyalFlush = false;
+		if(Hand.isHandStraightFlush(h, hs) &&
+				(h.getCardsInHand().get(eCardNo.SecondCard.getCardNo()).geteRank()==
+						eRank.KING)){
+			
+		}
+		return isHandRoyalFlush;
 	}
 	
-	//TODO: Implement This Method
 	public static boolean isHandStraightFlush(Hand h, HandScore hs)
 	{
-		return false;
+		boolean isHandStraightFlush = false;
+		if(Hand.isHandStraight(h, hs) == true &&
+				Hand.isHandFlush(h, hs)){
+			isHandStraightFlush = true;
+		}
+		return isHandStraightFlush;
 	}	
 
 	public static boolean isHandFourOfAKind(Hand h, HandScore hs)
@@ -140,19 +158,42 @@ public class Hand {
 		}
 	}	
 	
-	//TODO: Implement This Method
 	public static boolean isHandFlush(Hand h, HandScore hs)
 	{
-		return true; // ask for help
+		boolean isHandFlush = false;
+		for (int i = eCardNo.FirstCard.getCardNo();i<4;i++)
+        {
+            if (h.getCardsInHand().get(i).geteSuit() ==
+            		h.getCardsInHand().get(i+1).geteSuit())
+            {
+            	isHandFlush = true;
+            }
+        
+        }
+		return isHandFlush;
 	}		
 	
-	//TODO: Implement This Method
 	public static boolean isHandStraight(Hand h, HandScore hs)
 	{
-		return false;
-	}	
-	
-
+		 boolean isStraight = false;        
+	        int iStartCard = (Hand.isAce(h.getCardsInHand())) ? eCardNo.SecondCard.getCardNo(): eCardNo.FirstCard.getCardNo();
+	        
+	        for (int i = iStartCard;i<4;i++)
+	        {
+	            if (h.getCardsInHand().get(i).geteRank().getiRankNbr()-1 ==
+	            		h.getCardsInHand().get(i+1).geteRank().getiRankNbr())
+	            {
+	                isStraight = true;
+	            }
+	            else
+	            {
+	                isStraight = false;
+	                break;
+	            }
+	        }
+	        return isStraight;
+	    }
+		
 	public static boolean isHandThreeOfAKind(Hand h, HandScore hs)
 	{
 		ArrayList<Card> kickers = new ArrayList<Card>();
@@ -194,7 +235,6 @@ public class Hand {
 		}
 	}		
 	
-
 	public static boolean isHandTwoPair(Hand h, HandScore hs)
 	{
 		ArrayList<Card> kickers = new ArrayList<Card>();
@@ -243,7 +283,6 @@ public class Hand {
 		}
 
 	}	
-	
 
 	public static boolean isHandPair(Hand h, HandScore hs)
 	{
@@ -287,7 +326,6 @@ public class Hand {
 		}
 	}	
 	
-
 	public static boolean isHandHighCard(Hand h, HandScore hs)
 	{
 		hs.setHandStrength(eHandStrength.HighCard);
@@ -299,7 +337,6 @@ public class Hand {
 		return true;
 	}	
 	
-	//TODO: Implement This Method
 	public static boolean isAcesAndEights(Hand h, HandScore hs)
 	{
 		boolean isAcesAndEights = false;
@@ -313,7 +350,6 @@ public class Hand {
 		}
 		return isAcesAndEights;
 	}	
-	
 	
 	public static boolean isHandFullHouse(Hand h, HandScore hs) {
 
