@@ -9,7 +9,7 @@ import pkgPokerEnum.eRank;
 import pkgPokerEnum.eSuit;
 
 public class TestHands {
-
+//s
 	@Test
 	public void TestFullHouseA() {
 
